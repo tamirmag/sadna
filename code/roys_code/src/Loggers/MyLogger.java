@@ -59,7 +59,7 @@ public abstract class MyLogger {
     }
 
     public void clearLog() {
-        try (PrintWriter pw = new PrintWriter(getFilename())) {
+        try (PrintWriter pw = new PrintWriter(fullPath.toString())) {
             pw.close();
 
         } catch (FileNotFoundException e) {

@@ -1,9 +1,8 @@
 package Loggers;
 
-
-import Games.Game;
+import Games.IGame;
 import User.User;
-import User.Player;
+import Games.Player;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -76,7 +75,7 @@ public class FinishedGamesManager {
 
     }
 
-        public void saveFavoriteTurn(User user , Game game , int turn)
+        public void saveFavoriteTurn(User user , IGame game , int turn)
     {
         ArrayList<String> all_turns_of_user = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
