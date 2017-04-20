@@ -51,18 +51,19 @@ public class ActiveGamesManager
         }
 
         public void spectateGame(IGame game, User user) {
+            game.spectateGame(user);
         }
 
-        public List<IGame> findActiveGamesByPlayer(Player player, User user) {
+        public List<IGame> findActiveGamesByPlayer(String name) {
             ArrayList<IGame> ourGames = new ArrayList<IGame>();
             for (IGame game : games) {
-                if (game.isPlayerInGame(player))
+                if (game.isPlayerInGame(name))
                     ourGames.add(game);
             }
             return ourGames;
         }
 
-        public List<IGame> findActiveGamesByPotSize(int potSize, User user) {
+        public ArrayList<IGame> findActiveGamesByPotSize(int potSize) {
 
             ArrayList<IGame> ourGames = new ArrayList<IGame>();
             for (IGame game : games) {

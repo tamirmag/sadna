@@ -1,5 +1,8 @@
 package Games;
 
+import Loggers.ActiveGamesLogManager;
+import User.User;
+
 /**
  * Created by tamir on 16/04/2017.
  */
@@ -10,7 +13,15 @@ public class SpectatePolicy extends Policy{
     public SpectatePolicy(IGame policy, boolean spectate) {
         this.policy = policy;
         this.spectate = spectate;
-        this.policy.setSpectate(spectate);
     }
 
+    @Override
+    public boolean spectaAble(){
+        return spectate;
+    }
+
+    @Override
+    public void spectateGame(User user) {
+        ActiveGamesLogManager.getInstance().spectateGame(this.policy.getId(), user);
+    }
 }

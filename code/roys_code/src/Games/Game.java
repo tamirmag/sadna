@@ -3,6 +3,7 @@ package Games;
 import Games.Card;
 import Games.DeckManager;
 import Loggers.GameLogger;
+import User.User;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -37,7 +38,6 @@ public class Game implements IGame {
     private int pot;
     private ArrayList<Integer> playerDesk; //the amount of many that every player put
     boolean locked = false;
-    private boolean spectateAble = false;
     private int chips=0;
     private int buyIn = 0;
     private String type = "nurmal";
@@ -75,9 +75,16 @@ public class Game implements IGame {
         return true;
     }
 
-    public boolean isPlayerInGame(Player player){
-        if(players.contains(player))
-            return true;
+    @Override
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public boolean isPlayerInGame(String name){
+        for (Player player: players) {
+            if(player.getName().equals(name))
+                return true;
+        }
         return false;
     }
 
@@ -113,10 +120,6 @@ public class Game implements IGame {
         return chips;
     }
 
-    @Override
-    public void setSpectate(Boolean spectate) {
-        this.spectateAble = spectate;
-    }
 
     @Override
     public void setBuy(int cost) {
@@ -137,7 +140,7 @@ public class Game implements IGame {
 
     @Override
     public boolean spectaAble() {
-        return spectateAble;
+        return false;
     }
 
     public void raise(int amount, Player player) {
@@ -265,6 +268,11 @@ public class Game implements IGame {
             if(!s.contains(p.getName())) allTurns.remove(s);
         }
         return allTurns;
+    }
+
+    @Override
+    public void spectateGame(User user) {
+
     }
 
     public Hashtable<String ,ArrayList<String>> getAllTurnsByAllPlayers()

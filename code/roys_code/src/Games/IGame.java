@@ -1,5 +1,7 @@
 package Games;
 
+import User.User;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -16,7 +18,6 @@ public interface IGame {
 
     void setChipNum(int num);
 
-    void setSpectate(Boolean spectate);
 
     void setBuy(int cost);
 
@@ -24,7 +25,7 @@ public interface IGame {
 
     void publishMessage(String msg, Player player);
 
-    boolean isPlayerInGame(Player player);
+    boolean isPlayerInGame(String name);
 
     boolean join(Player player);
 
@@ -46,4 +47,11 @@ public interface IGame {
 
     ArrayList<String> getAllTurnsOfPlayer(Player p, ArrayList<String> allTurns);
 
+    void spectateGame(User user);
+
+    void bet(int amount, Player player);
+
+    void call(int amount, Player player);
+
+    boolean isLocked();
 }

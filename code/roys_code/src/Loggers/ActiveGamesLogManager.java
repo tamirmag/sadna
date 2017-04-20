@@ -107,6 +107,39 @@ public class ActiveGamesLogManager {
         return p -> p.getFilename().equals("Game" + num + ".txt");
     }
 
+    public void AddGameLogger(int g)
+    {
+        GameLogger g1 = new GameLogger(g);
+        ActiveGames.add(g1);
+
+    }
+
+    public void WriteToGameLogger(int gameNum,String message)
+    {
+        GameLogger g = getGameLogger(gameNum);
+        if(g!=null)
+        {
+            g.writeToFile(message);
+        }
+    }
+
+
+    private GameLogger getGameLogger(int ganeNum)
+    {
+        for(GameLogger logger : ActiveGames)
+        {
+            if(logger.getGameNumber() == ganeNum) return logger;
+        }
+        return null;
+    }
+
+    public void RemoveGameLogger(int gameNum)
+    {
+        for(GameLogger logger : ActiveGames)
+        {
+            if(logger.getGameNumber() == gameNum) ActiveGames.remove(logger);
+        }
+    }
 
     private ArrayList<GameLogger> filterActiveGames(Predicate<GameLogger> predicate) {
         return new ArrayList<>(ActiveGames.stream().filter(predicate).collect(Collectors.toList()));

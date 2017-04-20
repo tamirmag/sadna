@@ -1,5 +1,7 @@
 package Games;
 
+import User.User;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -30,10 +32,6 @@ public abstract class Policy implements IGame{
         policy.setChipNum(num);
     }
 
-    @Override
-    public void setSpectate(Boolean spectate) {
-        policy.setSpectate(spectate);
-    }
 
     @Override
     public void setBuy(int cost) {
@@ -52,8 +50,8 @@ public abstract class Policy implements IGame{
     }
 
     @Override
-    public boolean isPlayerInGame(Player player) {
-        return policy.isPlayerInGame(player);
+    public boolean isPlayerInGame(String name) {
+        return policy.isPlayerInGame(name);
     }
 
     @Override
@@ -114,4 +112,24 @@ public abstract class Policy implements IGame{
         return this.policy.getAllTurnsByAllPlayers();
     }
 
+
+    @Override
+    public void spectateGame(User user) {
+        this.policy.spectateGame(user);
+    }
+
+    @Override
+    public void bet(int amount, Player player) {
+        this.policy.bet(amount,player);
+    }
+
+    @Override
+    public void call(int amount, Player player) {
+        this.policy.call(amount,player);
+    }
+
+    @Override
+    public boolean isLocked() {
+        return this.policy.isLocked();
+    }
 }

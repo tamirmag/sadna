@@ -8,7 +8,13 @@ public class BuyInPolicy extends Policy{
     public BuyInPolicy(IGame policy, int cost) {
         this.policy = policy;
         this.cost = cost;
-        this.policy.setBuy(cost);
     }
 
+
+    public boolean join(Player player)
+    {
+        if(this.policy.isLocked())
+            return false;
+        return this.policy.join(player);
+    }
 }

@@ -7,9 +7,14 @@ import java.util.ArrayList;
 
 public class GameLogger extends MyLogger{
 
+
+
+    private int gameNumber;
     public GameLogger(int gameNumber)
     {
         super("Game"+ gameNumber+ ".txt");
+        this.gameNumber = gameNumber;
+
     }
     public GameLogger(String filename)
     {
@@ -43,6 +48,8 @@ public class GameLogger extends MyLogger{
         else return -1;
     }
 
-
+    public int getGameNumber() {
+        return gameNumber;
+    }
 
 }
