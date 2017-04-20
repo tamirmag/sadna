@@ -80,6 +80,7 @@ public abstract class Policy implements IGame{
     @Override
     public int getChips() {
         return this.policy.getChips();
+
     }
 
     @Override

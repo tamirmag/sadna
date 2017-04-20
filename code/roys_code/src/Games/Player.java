@@ -10,6 +10,12 @@ public class Player {
     ArrayList<Card> hand = new ArrayList<Card>();
     public Wallet wallet;
 
+    public Player(String name, Wallet wallet)
+    {
+        this.name = name;
+        this.wallet = wallet;
+    }
+
     public String getName() {
         return name;
     }

@@ -6,9 +6,22 @@ import User.User;
 
 public class ActiveGamesManager
     {
+        private static ActiveGamesManager instance = null;
         ArrayList<IGame> games = new ArrayList<IGame>();
         int index = 0;
 
+        private ActiveGamesManager()
+        {
+
+        }
+
+        public static ActiveGamesManager getInstance()
+        {
+            if(instance == null) {
+                instance = new ActiveGamesManager();
+            }
+            return instance;
+        }
         public void publishMessage(String msg, int gameNumber, Player player) {
             for (IGame game : games) {
                 if (game.getId() == gameNumber) {
@@ -19,15 +32,21 @@ public class ActiveGamesManager
 
         public void createGame(User user, String type) {
             ArrayList<Player> players = new ArrayList<Player>();
-            Player p = new Player();
+            Player p = new Player(user.getUsername(), user.getWallet());
             p.wallet = user.getWallet();
             p.name = user.getUsername();
             players.add(p);
             games.add(new Game(players, ++index, type));
         }
 
-        public void JoinGame(IGame game, User user) {
-            game.join(new Player());
+        public void JoinGame(int id, User user) {
+            IGame myGame=null;
+            for (IGame game:games ) {
+                if(game.getId() == id)
+                    myGame = game;
+            }
+            Player p = new Player(user.getUsername(), user.getWallet());
+            myGame.join(p);
             //TODO change the player
         }
 
